@@ -1,28 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data noupdate="1">
-        <record id="email_template_samaa_invoice" model="mail.template">
-            <field name="name">Samaa Invoice: Static Email</field>
+    <data>
+        <function model="ir.model.data" name="write">
+            <value model="ir.model.data" search="[('module', '=', 'kio_invoice_email_template'), ('name', '=', 'email_template_samaa_invoice'), ('model', '=', 'mail.template')]"/>
+            <value eval="{'name': 'mail_template_customer_invoice_samaa'}"/>
+        </function>
+
+        <record id="mail_template_customer_invoice_samaa" model="mail.template">
+            <field name="name">Customer Invoice: Samaa Email</field>
             <field name="model_id" ref="account.model_account_move"/>
+            <field name="subject">Invoice #{{ object.name or '' }} - Samaa Al Awir Vegetables &amp; Fruits Trading LLC</field>
             <field name="email_from">{{ (object.invoice_user_id.email_formatted or object.company_id.email_formatted or user.email_formatted) }}</field>
             <field name="partner_to">{{ object.partner_id.id }}</field>
-            <field name="subject">Invoice {{ object.name or 'n/a' }} - Samaa Al Awir Vegetables &amp; Fruits Trading LLC</field>
-            <field name="description">Static customer invoice email with bank details and GRN reference.</field>
+            <field name="description">Professional Samaa customer invoice email</field>
             <field name="body_html" type="html">
 <div style="margin: 0px; padding: 0px;">
+    <t t-set="sale_orders" t-value="object.invoice_line_ids.sale_line_ids.order_id"/>
+    <t t-set="sale_order_names" t-value="sale_orders.mapped('name')"/>
     <p style="margin: 0px; padding: 0px; font-size: 13px;">
-        Dear <t t-out="object.partner_id.name or 'Customer'">Customer</t>,<br/><br/>
+        Dear "<t t-out="object.partner_id.name or 'Customer'">Customer</t>",<br/><br/>
 
         I hope this email finds you well.<br/><br/>
 
-        Please find attached Invoice #<span style="font-weight: bold;" t-out="object.name or 'n/a'">INV/0001</span>
-        (referencing Sales Order: <span style="font-weight: bold;" t-out="object.invoice_origin or 'n/a'">SO0001</span>)
-        amounting to <span style="font-weight: bold;" t-out="'%.2f' % object.amount_total">0.00</span> AED from
-        Samaa Al Awir Vegetables &amp; Fruits Trading LLC.<br/><br/>
+        Please find attached Invoice #<span t-out="object.name or ''">INV/2026/00001</span>
+        <t t-if="sale_order_names">
+            (referencing Sales Order: <span t-out="', '.join(sale_order_names)">SO00045</span>)
+        </t>
+        amounting to <span t-out="'%.2f' % object.amount_total">0.00</span> AED from Samaa Al Awir Vegetables &amp; Fruits Trading LLC.<br/><br/>
 
         Kindly use GRN 7009 as the communication/reference for your payment.<br/><br/>
 
-        <strong>Bank Details:</strong><br/><br/>
+        Bank Details:<br/><br/>
 
         Bank Name: Emirates NBD<br/><br/>
 
