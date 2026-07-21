@@ -22,11 +22,11 @@
 
         I hope this email finds you well.<br/><br/>
 
-        Please find attached Invoice #<span t-out="object.name or ''">INV/2026/00001</span>
+        Please find attached Invoice #<strong><span t-out="object.name or ''">INV/2026/00001</span></strong>
         <t t-if="sale_order_names">
-            (referencing Sales Order: <span t-out="', '.join(sale_order_names)">SO00045</span>)
+            (referencing Sales Order: <strong><span t-out="', '.join(sale_order_names)">SO00045</span></strong>)
         </t>
-        amounting to <span t-out="'%.2f' % object.amount_total">0.00</span> AED from Samaa Al Awir Vegetables &amp; Fruits Trading LLC.<br/><br/>
+        amounting to <strong><span t-out="'%.2f' % object.amount_total">0.00</span></strong> AED from Samaa Al Awir Vegetables &amp; Fruits Trading LLC.<br/><br/>
 
         Kindly use GRN 7009 as the communication/reference for your payment.<br/><br/>
 
