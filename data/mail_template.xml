@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="email_template_samaa_invoice" model="mail.template">
+            <field name="name">Samaa Invoice: Static Email</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="email_from">{{ (object.invoice_user_id.email_formatted or object.company_id.email_formatted or user.email_formatted) }}</field>
+            <field name="partner_to">{{ object.partner_id.id }}</field>
+            <field name="subject">Invoice {{ object.name or 'n/a' }} - Samaa Al Awir Vegetables &amp; Fruits Trading LLC</field>
+            <field name="description">Static customer invoice email with bank details and GRN reference.</field>
+            <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px;">
+    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+        Dear <t t-out="object.partner_id.name or 'Customer'">Customer</t>,<br/><br/>
+
+        I hope this email finds you well.<br/><br/>
+
+        Please find attached Invoice #<span style="font-weight: bold;" t-out="object.name or 'n/a'">INV/0001</span>
+        (referencing Sales Order: <span style="font-weight: bold;" t-out="object.invoice_origin or 'n/a'">SO0001</span>)
+        amounting to <span style="font-weight: bold;" t-out="'%.2f' % object.amount_total">0.00</span> AED from
+        Samaa Al Awir Vegetables &amp; Fruits Trading LLC.<br/><br/>
+
+        Kindly use GRN 7009 as the communication/reference for your payment.<br/><br/>
+
+        <strong>Bank Details:</strong><br/><br/>
+
+        Bank Name: Emirates NBD<br/><br/>
+
+        Account Name: SAMAA AL AWIR VEGETABLES &amp; FRUITS TRADING LLC<br/><br/>
+
+        Account Number: 1015774412601<br/><br/>
+
+        IBAN: AE39 0260 0010 1577 4412 601<br/><br/>
+
+        SWIFT/BIC Code: EBILAEAD<br/><br/>
+
+        Please note that if any objection/dispute is not raised within 7 days from receiving this invoice, we will assume everything is in order and approved.<br/><br/>
+
+        Please remit payment at your earliest convenience and share the payment remittance advice once processed. Feel free to reach out if you have any questions.<br/><br/>
+
+        Thank you for your business.<br/><br/>
+
+        Best regards,<br/><br/>
+
+        General Accountant
+    </p>
+</div>
+            </field>
+            <field name="report_template_ids" eval="[(4, ref('account.account_invoices'))]"/>
+            <field name="lang">{{ object.partner_id.lang }}</field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+    </data>
+</odoo>

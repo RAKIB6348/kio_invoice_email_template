@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_kio_invoice_email_template_kio_invoice_email_template,kio_invoice_email_template.kio_invoice_email_template,model_kio_invoice_email_template_kio_invoice_email_template,base.group_user,1,1,1,1

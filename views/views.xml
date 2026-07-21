@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="kio_invoice_email_template.list">
+      <field name="name">kio_invoice_email_template list</field>
+      <field name="model">kio_invoice_email_template.kio_invoice_email_template</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="kio_invoice_email_template.action_window">
+      <field name="name">kio_invoice_email_template window</field>
+      <field name="res_model">kio_invoice_email_template.kio_invoice_email_template</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="kio_invoice_email_template.action_server">
+      <field name="name">kio_invoice_email_template server</field>
+      <field name="model_id" ref="model_kio_invoice_email_template_kio_invoice_email_template"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="kio_invoice_email_template" id="kio_invoice_email_template.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="kio_invoice_email_template.menu_1" parent="kio_invoice_email_template.menu_root"/>
+    <menuitem name="Menu 2" id="kio_invoice_email_template.menu_2" parent="kio_invoice_email_template.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="kio_invoice_email_template.menu_1_list" parent="kio_invoice_email_template.menu_1"
+              action="kio_invoice_email_template.action_window"/>
+    <menuitem name="Server to list" id="kio_invoice_email_template" parent="kio_invoice_email_template.menu_2"
+              action="kio_invoice_email_template.action_server"/>
+-->
+  </data>
+</odoo>
