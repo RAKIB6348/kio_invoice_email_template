@@ -21,7 +21,9 @@ Static invoice email template for Samaa Al Awir Vegetables & Fruits Trading LLC.
 
     # always loaded
     'data': [
+        'data/ir_sequence.xml',
         'data/mail_template.xml',
+        'views/views.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

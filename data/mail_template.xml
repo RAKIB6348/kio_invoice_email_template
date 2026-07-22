@@ -28,7 +28,7 @@
         </t>
         amounting to <strong><span t-out="'%.2f' % object.amount_total">0.00</span></strong> AED from Samaa Al Awir Vegetables &amp; Fruits Trading LLC.<br/><br/>
 
-        Kindly use GRN 7009 as the communication/reference for your payment.<br/><br/>
+        Kindly use <strong><span t-out="object.grn_reference or 'N/A'">N/A</span></strong> as the communication/reference for your payment.<br/><br/>
 
         Bank Details:<br/><br/>
 
