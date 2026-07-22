@@ -31,3 +31,20 @@ class AccountMove(models.Model):
             if template:
                 return 'kio_invoice_email_template.mail_template_customer_invoice_samaa'
         return super()._get_mail_template()
+
+    @api.model
+    def action_resequence_grn_references(self):
+        records = self.search([], order='create_date, id')
+        padding = 4
+        prefix = "GRN "
+        index = 1
+        for record in records:
+            grn = f"{prefix}{str(index).zfill(padding)}"
+            record.write({'grn_reference': grn})
+            index += 1
+        sequence = self.env['ir.sequence'].search([
+            ('code', '=', 'account.move.grn.reference'),
+        ], limit=1)
+        if sequence:
+            sequence.write({'number_next': index})
+        return {'type': 'ir.actions.act_window_close'}
