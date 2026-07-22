@@ -8,7 +8,8 @@
 Static invoice email template for Samaa Al Awir Vegetables & Fruits Trading LLC.
     """,
 
-    'author': "Samaa Al Awir Vegetables & Fruits Trading LLC",
+    'author': "Kendroo Ltd",
+    'website': "https://kendroo.io/",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
